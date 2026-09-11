@@ -101,7 +101,7 @@ jobs:
           name: summary-${{ needs.plan.outputs.task_id }}
           path: merged/
           retention-days: 14
-      - name: Write back to repo (single writer)
+      - name: Write back to repo (single writer, with rebase-retry)
         run: |
           git config user.name fleet-bot
           git config user.email brianzhangboyang@gmail.com
@@ -109,4 +109,11 @@ jobs:
           cp merged/*.json merged/*.md results/ 2>/dev/null || true
           git add results/
           git commit -m "pool result: ${{ needs.plan.outputs.task_id }} [skip ci]" || echo no-change
-          git push
+          ok=0
+          for i in 1 2 3 4 5; do
+            if git push 2>/tmp/pusherr; then ok=1; break; fi
+            echo "push try $i failed: $(head -c 150 /tmp/pusherr | tr '\n' ' ')"
+            sleep $((i * 3 + RANDOM % 5))
+            git pull --rebase -q || { git rebase --abort 2>/dev/null; git pull -q; }
+          done
+          [ "$ok" = "1" ] || { echo "WRITEBACK_FAILED after 5 tries"; exit 1; }
