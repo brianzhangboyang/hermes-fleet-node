@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "github_worker_pool task manifest",
+  "description": "Hermes 弹性 Worker Pool 的任务清单格式。提交前由 submit_task.py 校验。",
+  "type": "object",
+  "required": ["task_id", "objective", "shards"],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{3,63}$",
+      "description": "全局唯一任务号, 小写字母数字-_ , 同时用作 branch/result 文件名前缀"
+    },
+    "parent_task_id": { "type": ["string", "null"] },
+    "objective": { "type": "string", "maxLength": 2000 },
+    "created_by": { "type": "string", "default": "hermes" },
+    "shards": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "description": "受控实验值: Free 档 GitHub 标准 runner 并发上限 20 (官方 limits 页), 本池保守封顶 16",
+      "items": {
+        "type": "object",
+        "required": ["shard_id", "kind", "instructions", "expected_output"],
+        "properties": {
+          "shard_id": { "type": "integer", "minimum": 1 },
+          "kind": {
+            "type": "string",
+            "enum": ["shell", "http_probe", "python"],
+            "description": "shell=白名单命令; http_probe=URL列表HEAD探测; python=只读python片段(无网络无写盘)"
+          },
+          "instructions": { "type": "string", "maxLength": 8000 },
+          "expected_output": { "type": "string", "maxLength": 500 },
+          "timeout_seconds": { "type": "integer", "minimum": 10, "maximum": 1500, "default": 300 }
+        }
+      }
+    }
+  }
+}

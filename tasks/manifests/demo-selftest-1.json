@@ -1,0 +1,28 @@
+{
+  "task_id": "demo-selftest-1",
+  "objective": "本地三件套自测: shell/python/http_probe 三种引擎各一片",
+  "created_by": "hermes-local",
+  "shards": [
+    {
+      "shard_id": 1,
+      "kind": "shell",
+      "instructions": "echo hello-from-shard-1\ndate -u\nnproc",
+      "expected_output": "hello + UTC时间 + CPU数",
+      "timeout_seconds": 60
+    },
+    {
+      "shard_id": 2,
+      "kind": "python",
+      "instructions": "print(sum(range(100)))\nprint('py-ok')",
+      "expected_output": "4950 + py-ok",
+      "timeout_seconds": 60
+    },
+    {
+      "shard_id": 3,
+      "kind": "http_probe",
+      "instructions": "https://example.com\nhttps://httpbin.org/get",
+      "expected_output": "两URL状态码+耗时",
+      "timeout_seconds": 90
+    }
+  ]
+}

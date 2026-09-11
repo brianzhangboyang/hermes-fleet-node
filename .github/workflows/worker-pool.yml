@@ -1,0 +1,112 @@
+name: worker-pool
+# github_worker_pool · Hermes 弹性临时 Worker Pool (OP-005)
+# 架构: dispatch(manifest_path) -> plan(校验+拆片) -> worker matrix(Artifact回收)
+#       -> aggregate(if always: 汇总+单次写回 results/<task_id>.json)
+# 定位: 短生命周期并行 worker; 不做常驻服务; 不绕过平台限制
+# 官方边界(VERIFIED docs.github.com/actions/reference/limits): matrix<=256, Free并发20,
+#   job<=6h, artifact存储 Free 500MB/月
+on:
+  workflow_dispatch:
+    inputs:
+      manifest_path:
+        description: '仓库内任务清单路径 tasks/manifests/xxx.json'
+        required: true
+        type: string
+      max_parallel:
+        description: '最大并行数'
+        required: false
+        default: '4'
+        type: choice
+        options: ['1', '2', '4', '8', '16']
+      fail_fast:
+        description: 'fail-fast (false=单片失败不拖垮整体)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['true', 'false']
+permissions:
+  contents: write
+concurrency:
+  group: worker-pool-${{ github.event.inputs.manifest_path }}
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      task_id: ${{ steps.v.outputs.task_id }}
+      matrix: ${{ steps.v.outputs.matrix }}
+      n_shards: ${{ steps.v.outputs.n_shards }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: v
+        name: Validate manifest & emit shards
+        env:
+          MP: ${{ github.event.inputs.manifest_path }}
+        run: |
+          python3 scripts/plan_validator.py "$MP" >> "$GITHUB_OUTPUT"
+
+  worker:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: ${{ github.event.inputs.fail_fast == 'true' }}
+      max-parallel: ${{ fromJSON(github.event.inputs.max_parallel) }}
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute shard (engine=worker_engine.py)
+        continue-on-error: true
+        id: run
+        env:
+          MP: ${{ github.event.inputs.manifest_path }}
+          SID: ${{ matrix.shard.shard_id }}
+          TIMEOUT: ${{ matrix.shard.timeout_seconds }}
+        run: |
+          python3 scripts/worker_engine.py "$MP" "$SID" "$TIMEOUT"
+      - name: Upload result artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: result-${{ needs.plan.outputs.task_id }}-${{ matrix.shard.shard_id }}
+          path: result.json
+          retention-days: 7
+          if-no-files-found: warn
+
+  aggregate:
+    needs: [plan, worker]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all shard results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: result-${{ needs.plan.outputs.task_id }}-*
+          path: results_in
+          merge-multiple: true
+      - name: Merge & decide verdict
+        env:
+          TID: ${{ needs.plan.outputs.task_id }}
+          NS: ${{ needs.plan.outputs.n_shards }}
+          EXPECT: ${{ needs.plan.outputs.matrix }}
+        run: |
+          python3 scripts/aggregator.py "$TID" "$NS" "$EXPECT" results_in merged
+      - name: Upload merged result
+        uses: actions/upload-artifact@v4
+        with:
+          name: summary-${{ needs.plan.outputs.task_id }}
+          path: merged/
+          retention-days: 14
+      - name: Write back to repo (single writer)
+        run: |
+          git config user.name fleet-bot
+          git config user.email brianzhangboyang@gmail.com
+          mkdir -p results
+          cp merged/*.json merged/*.md results/ 2>/dev/null || true
+          git add results/
+          git commit -m "pool result: ${{ needs.plan.outputs.task_id }} [skip ci]" || echo no-change
+          git push
