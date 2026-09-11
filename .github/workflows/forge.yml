@@ -1,0 +1,21 @@
+name: forge
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/forge.yml'
+permissions:
+  contents: write
+jobs:
+  forge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash install.sh --skip-setup --skip-browser --skip-computer-use > install.log 2>&1 || echo EXIT_FAIL >> install.log
+      - run: tail -8 install.log
+      - run: |
+          echo "## $(date -u +%FT%TZ) cpu=$(nproc) mem=$(free -g | awk 'NR==2{print $2}')G" > REPORT.md
+          export PATH="$HOME/.local/bin:$PATH"; hermes --version >> REPORT.md 2>&1 || tail -5 install.log >> REPORT.md
+          git config user.name fleet-bot; git config user.email brianzhangboyang@gmail.com
+          git add -A; git commit -m "forge report [skip ci]"; git push
