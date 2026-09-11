@@ -1,0 +1,77 @@
+name: fixer
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fixer.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rewrite forge-full.yml correctly
+        run: |
+          cat > .github/workflows/forge-full.yml <<'YMLEOF'
+          name: forge-full
+          on:
+            workflow_dispatch:
+          permissions:
+            contents: write
+          jobs:
+            forge:
+              runs-on: ubuntu-latest
+              timeout-minutes: 25
+              steps:
+                - uses: actions/checkout@v4
+                - name: Install hermes non-interactive
+                  run: |
+                    bash install.sh --skip-setup --skip-browser --skip-computer-use > install.log 2>&1 || echo "INSTALL_EXIT=$?" >> install.log
+                    tail -8 install.log
+                - name: Verify
+                  run: |
+                    export PATH="$HOME/.local/bin:$HOME/.hermes/bin:$PATH"
+                    { echo "## runner $(hostname) cpu=$(nproc) mem=$(free -g | awk 'NR==2{print $2}')G"
+                      echo "## hermes binary:"; command -v hermes || echo NOT_FOUND
+                      echo "## version:"; hermes --version 2>&1 | head -2 || true
+                      echo "## install tail:"; tail -6 install.log
+                      echo "## ts $(date -u +%FT%TZ)"; } > REPORT-FULL.md
+                    cat REPORT-FULL.md
+                - name: Push
+                  run: |
+                    git config user.name fleet-bot
+                    git config user.email brianzhangboyang@gmail.com
+                    git add -A
+                    git commit -m "forge-full fixed + report [skip ci]" || true
+                    git push || true
+          YMLEOF
+          cat > .github/workflows/forge-runner.yml <<'YMLEOF'
+          name: probe-only
+          on:
+            workflow_dispatch:
+          jobs:
+            p:
+              runs-on: ubuntu-latest
+              steps:
+                - run: echo "probe alive $(date -u)"
+          YMLEOF
+          ls -la .github/workflows/
+      - name: Push rewritten workflows
+        run: |
+          git config user.name fleet-bot
+          git config user.email brianzhangboyang@gmail.com
+          git add -A
+          git commit -m "fixer: rewrite forge workflows [skip ci]"
+          git push
+      - name: Now run the real install in THIS job too
+        run: |
+          bash install.sh --skip-setup --skip-browser --skip-computer-use > install.log 2>&1 || echo "INSTALL_EXIT=$?" >> install.log
+          export PATH="$HOME/.local/bin:$HOME/.hermes/bin:$PATH"
+          { echo "## fixer-direct run"; command -v hermes || echo NOT_FOUND
+            hermes --version 2>&1 | head -2 || true; tail -8 install.log
+            echo "## ts $(date -u +%FT%TZ)"; } > REPORT-FULL.md
+          git add REPORT-FULL.md
+          git commit -m "fixer install report [skip ci]" || true
+          git push || true
