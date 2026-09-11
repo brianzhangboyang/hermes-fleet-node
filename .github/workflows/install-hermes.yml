@@ -1,3 +1,38 @@
+name: forge-runner
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/install-hermes.yml'
+permissions:
+  contents: write
+jobs:
+  forge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cleanup junk paths
+        run: git rm -r --ignore-unfold --cached --pathspec-from-file=/dev/null 2>/dev/null; rm -rf .github/workflows/.github; true
+      - name: Download hermes installer
+        run: |
+          curl -fsSL --max-time 60 https://hermes-agent.nousresearch.com/install.sh -o install.sh
+          echo "bytes=$(wc -c < install.sh)"
+          head -12 install.sh
+      - name: Run installer (timeout-guarded)
+        run: timeout 420 bash install.sh --no-input 2>&1 | tail -8 || echo INSTALL_EXIT_$?
+      - name: Report
+        run: |
+          { echo "## runner"; hostname; echo "cpu=$(nproc) mem=$(free -g | awk 'NR==2{print $2}')G"; df -h / | tail -1;
+            echo "## hermes"; command -v hermes || echo not-on-PATH; ls ~/.hermes/bin ~/.local/bin 2>/dev/null | head -5;
+            echo "## ts $(date -u +%FT%TZ)"; } > REPORT.md
+          cat REPORT.md
+      - name: Push report
+        run: |
+          git config user.name fleet-bot
+          git config user.email brianzhangboyang@gmail.com
+          git add -A
+          git commit -m "runner report [skip ci]" || true
+          git push || true
 name: install-hermes
 on:
   workflow_dispatch:
