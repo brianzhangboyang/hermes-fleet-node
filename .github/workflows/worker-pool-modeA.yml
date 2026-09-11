@@ -1,0 +1,84 @@
+name: worker-pool-modeA
+# OP-005 第8阶段对照实验: 模式A = 多Worker各自git push
+# 目的: 实测并发写回是否冲突(non-fast-forward), 为架构选型提供证据
+# 结论预期(待实测): A 需要 retry/锁, 不如 B(Artifact+Aggregator单写回) 可靠
+on:
+  workflow_dispatch:
+    inputs:
+      manifest_path:
+        description: 'tasks/manifests/xxx.json'
+        required: true
+        type: string
+      n_pushers:
+        description: '并发push的worker数'
+        required: false
+        default: '3'
+permissions:
+  contents: write
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      task_id: ${{ steps.v.outputs.task_id }}
+      matrix: ${{ steps.v.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: v
+        run: python3 scripts/plan_validator.py "${{ github.event.inputs.manifest_path }}" >> "$GITHUB_OUTPUT"
+  pusher:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Work + push directly (observe conflicts)
+        id: p
+        env:
+          MP: ${{ github.event.inputs.manifest_path }}
+          SID: ${{ matrix.shard.shard_id }}
+        run: |
+          python3 scripts/worker_engine.py "$MP" "$SID" 60
+          git config user.name "pusher-$SID"
+          git config user.email "brianzhangboyang@gmail.com"
+          mkdir -p results-a
+          cp result_$SID.json results-a/modeA-$SID.json
+          tries=0; ok=0
+          for i in 1 2 3 4 5; do
+            tries=$i
+            git add results-a/modeA-$SID.json
+            git commit -q -m "modeA shard $SID try $i [skip ci]" || { echo "COMMIT_FAIL"; break; }
+            if git push -q 2>/tmp/pe; then ok=1; break; fi
+            echo "PUSH_FAIL try=$i: $(head -c 200 /tmp/pe | tr '\n' ' ')"
+            sleep $((RANDOM % 3 + 1))
+            git pull --rebase -q 2>/dev/null || git rebase --abort 2>/dev/null
+          done
+          echo "SID=$SID tries=$tries ok=$ok" | tee /tmp/verdict
+          echo "result=tries=${tries},push_ok=${ok}" >> "$GITHUB_OUTPUT"
+      - name: Upload attempt log
+        uses: actions/upload-artifact@v4
+        with:
+          name: modea-log-${{ needs.plan.outputs.task_id }}-${{ matrix.shard.shard_id }}
+          path: result_*.json
+          if-no-files-found: error
+  tally:
+    needs: [plan, pusher]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tally push behaviour
+        run: |
+          git pull --rebase -q
+          ls -la results-a/ 2>/dev/null || true
+          { echo "# modeA tally ${{ needs.plan.outputs.task_id }}"
+            echo "files landed: $(ls results-a/ 2>/dev/null | wc -l)"
+            echo "run: ${{ github.run_id }}"
+          } > results-a/tally.md
+          git config user.name fleet-bot; git config user.email brianzhangboyang@gmail.com
+          git add results-a/ || true
+          git commit -q -m "modeA tally [skip ci]" || true
+          git push -q || echo "tally push conflict too (itself evidence)"
