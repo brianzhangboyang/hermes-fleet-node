@@ -56,10 +56,12 @@ def validate(path):
         if not (isinstance(ins, str) and 0 < len(ins) <= 8000):
             return False, f"shard {sid}: instructions 缺失/超长"
         if s.get("kind") == "shell":
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+            from worker_engine import shell_line_ok
             for cmd in filter(None, (l.strip() for l in ins.splitlines())):
-                head = cmd.split()[0]
-                if head not in SHELL_WHITELIST:
-                    return False, f"shard {sid}: shell 头命令 '{head}' 不在白名单"
+                allowed, bad = shell_line_ok(cmd)
+                if not allowed:
+                    return False, f"shard {sid}: '{bad}' 不在白名单 (cmd: {cmd[:60]})"
         t = s.get("timeout_seconds", 300)
         if not (isinstance(t, int) and 10 <= t <= 1500):
             return False, f"shard {sid}: timeout_seconds 须 10..1500"
