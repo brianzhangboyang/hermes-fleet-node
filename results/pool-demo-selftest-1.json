@@ -1,45 +1,64 @@
 {
  "task_id": "demo-selftest-1",
- "verdict": "UNKNOWN",
+ "verdict": "SUCCESS",
  "shards_total": 3,
- "shards_ok": 0,
+ "shards_ok": 3,
  "shards_failed": 0,
- "shards_missing": [
-  1,
-  2,
-  3
- ],
- "aggregated_at": "2026-09-11T15:32:18Z",
+ "shards_missing": [],
+ "aggregated_at": "2026-09-11T15:36:27Z",
  "shards": [
   {
    "task_id": "demo-selftest-1",
    "shard_id": 1,
-   "status": "missing",
-   "result": null,
-   "error": "no result.json (worker killed/cancelled?)",
-   "started_at": null,
-   "finished_at": null,
-   "duration_seconds": null
+   "status": "success",
+   "result": {
+    "output": "$ echo hello-from-shard-1\n[exit=0]\nhello-from-shard-1\n\n\n$ date -u\n[exit=0]\nFri Sep 11 15:36:16 UTC 2026\n\n\n$ nproc\n[exit=0]\n4\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:36:16Z",
+   "finished_at": "2026-09-11T15:36:16Z",
+   "duration_seconds": 0.0,
+   "runner": "runnervmlun5p"
   },
   {
    "task_id": "demo-selftest-1",
    "shard_id": 2,
-   "status": "missing",
-   "result": null,
-   "error": "no result.json (worker killed/cancelled?)",
-   "started_at": null,
-   "finished_at": null,
-   "duration_seconds": null
+   "status": "success",
+   "result": {
+    "exit": 0,
+    "output": "4950\npy-ok\n",
+    "stderr": "",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:36:17Z",
+   "finished_at": "2026-09-11T15:36:17Z",
+   "duration_seconds": 0.0,
+   "runner": "runnervmlun5p"
   },
   {
    "task_id": "demo-selftest-1",
    "shard_id": 3,
-   "status": "missing",
-   "result": null,
-   "error": "no result.json (worker killed/cancelled?)",
-   "started_at": null,
-   "finished_at": null,
-   "duration_seconds": null
+   "status": "success",
+   "result": {
+    "probes": [
+     {
+      "url": "https://example.com",
+      "probe": "200 0.063397s"
+     },
+     {
+      "url": "https://httpbin.org/get",
+      "probe": "200 0.323038s"
+     }
+    ],
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:36:17Z",
+   "finished_at": "2026-09-11T15:36:18Z",
+   "duration_seconds": 0.6,
+   "runner": "runnervmlun5p"
   }
  ]
 }
