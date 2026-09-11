@@ -1,0 +1,81 @@
+{
+ "task_id": "e6-b2b-recon",
+ "verdict": "SUCCESS",
+ "shards_total": 5,
+ "shards_ok": 5,
+ "shards_failed": 0,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-11T16:01:44Z",
+ "shards": [
+  {
+   "task_id": "e6-b2b-recon",
+   "shard_id": 1,
+   "status": "success",
+   "result": {
+    "output": "$ for u in europages.co.uk www.alibaba.com www.thomasnet.com; do echo \"== $u\"; curl -sL -m 15 -o /dev/null -w 'home=%{http_code} t=%{time_total}s final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 10 -o /dev/null -w 'robots=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml; done\n[exit=0]\n== europages.co.uk\nhome=200 t=1.982402s final=https://www.europages.co.uk:443/\nrobots=301\nsitemap=301\n== www.alibaba.com\nhome=200 t=0.888829s final=https://www.alibaba.com/\nrobots=200\nsitemap=302\n== www.thomasnet.com\nhome=403 t=0.276008s final=https://www.thomasnet.com/\nrobots=403\nsitemap=404\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T16:01:15Z",
+   "finished_at": "2026-09-11T16:01:20Z",
+   "duration_seconds": 5.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e6-b2b-recon",
+   "shard_id": 2,
+   "status": "success",
+   "result": {
+    "output": "$ for u in www.kompass.com www.tradeindia.com www.exportersindia.com; do echo \"== $u\"; curl -sL -m 15 -o /dev/null -w 'home=%{http_code} t=%{time_total}s\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 10 -o /dev/null -w 'robots=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; done\n[exit=0]\n== www.kompass.com\nhome=403 t=0.504652s\nrobots=200\n== www.tradeindia.com\nhome=200 t=0.253032s\nrobots=200\n== www.exportersindia.com\nhome=200 t=1.861452s\nrobots=200\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T16:01:15Z",
+   "finished_at": "2026-09-11T16:01:19Z",
+   "duration_seconds": 4.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e6-b2b-recon",
+   "shard_id": 3,
+   "status": "success",
+   "result": {
+    "output": "$ for u in www.made-in-china.com goldsupplier.com tradekey.com; do echo \"== $u\"; curl -sL -m 15 -o /dev/null -w 'home=%{http_code} t=%{time_total}s\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 10 -o /dev/null -w 'robots=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; done\n[exit=0]\n== www.made-in-china.com\nhome=200 t=0.277499s\nrobots=200\n== goldsupplier.com\nhome=200 t=6.003046s\nrobots=301\n== tradekey.com\nhome=200 t=9.256241s\nrobots=301\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T16:01:16Z",
+   "finished_at": "2026-09-11T16:01:34Z",
+   "duration_seconds": 17.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e6-b2b-recon",
+   "shard_id": 4,
+   "status": "success",
+   "result": {
+    "output": "$ echo '== europages search页可索引性'; curl -sL -m 20 -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' 'https://www.europages.co.uk/companies.html' | head -c 400 | tr -d '\\0'; echo; curl -sL -m 20 -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' 'https://www.europages.co.uk/companies.html' -o /tmp/ep.html -w 'bytes=%{size_download} code=%{http_code}\\n'; grep -c -o 'CompanyCard' /tmp/ep.html 2>/dev/null || echo 'CompanyCard=0'; grep -c -o 'href=\"/company' /tmp/ep.html 2>/dev/null || true\n[exit=0]\n== europages search页可索引性\n<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><!----><title>Europages</title><link rel=\"icon\" href=\"https://d18yn9dcojt05d.cloudfront.net/wlw_assets/images/favicons/ep/favicon.svg\"><style lang=\"css\">/*\n1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)\n2. Allo\nbytes=31511 code=404\n0\nCompanyCard=0\n0\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T16:01:15Z",
+   "finished_at": "2026-09-11T16:01:16Z",
+   "duration_seconds": 1.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e6-b2b-recon",
+   "shard_id": 5,
+   "status": "success",
+   "result": {
+    "output": "$ echo '== alibaba trade搜索静态性'; curl -sL -m 25 -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' 'https://www.alibaba.com/trade/search?SearchText=valves' -o /tmp/al.html -w 'bytes=%{size_download} code=%{http_code} final=%{url_effective}\\n'; grep -c -o 'organic-list' /tmp/al.html 2>/dev/null || echo organic=0; grep -c -o 'caption' /tmp/al.html 2>/dev/null || true; head -c 300 /tmp/al.html\n[exit=0]\n== alibaba trade搜索静态性\nbytes=90731 code=200 final=https://www.alibaba.com/trade/search?SearchText=valves\n0\norganic=0\n0\n\n\n<!DOCTYPE html>\n<html>\n\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\"\n        content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" />\n    <meta name=\"aplus-xplug\" content=\"NONE\">\n    <script charset=\"utf-8\" src=\"//g.alicdn.com/mtb/li\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T16:01:33Z",
+   "finished_at": "2026-09-11T16:01:34Z",
+   "duration_seconds": 1.2,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
