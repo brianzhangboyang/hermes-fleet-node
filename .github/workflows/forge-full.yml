@@ -1,0 +1,33 @@
+name: forge-full
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/forge-full.yml'
+permissions:
+  contents: write
+jobs:
+  forge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install hermes
+        run: |
+          timeout 480 bash install.sh --no-input > install.log 2>&1 || echo "INSTALL_EXIT=$?" >> install.log
+          tail -6 install.log
+      - name: Verify
+        run: |
+          export PATH="$HOME/.local/bin:$HOME/.hermes/bin:$PATH"
+          { echo "## runner $(hostname) cpu=$(nproc) mem=$(free -g | awk 'NR==2{print $2}')G"
+            echo "## hermes binary:"; command -v hermes || echo NOT_FOUND
+            echo "## version:"; hermes --version 2>&1 | head -2 || true
+            echo "## install tail:"; tail -4 install.log
+            echo "## ts $(date -u +%FT%TZ)"; } > REPORT-FULL.md
+          cat REPORT-FULL.md
+      - name: Push report
+        run: |
+          git config user.name fleet-bot
+          git config user.email brianzhangboyang@gmail.com
+          git add REPORT-FULL.md || true
+          git commit -m "forge-full report [skip ci]" || true
+          git push || true
