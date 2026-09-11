@@ -1,0 +1,45 @@
+{
+ "task_id": "demo-selftest-1",
+ "verdict": "UNKNOWN",
+ "shards_total": 3,
+ "shards_ok": 0,
+ "shards_failed": 0,
+ "shards_missing": [
+  1,
+  2,
+  3
+ ],
+ "aggregated_at": "2026-09-11T15:27:09Z",
+ "shards": [
+  {
+   "task_id": "demo-selftest-1",
+   "shard_id": 1,
+   "status": "missing",
+   "result": null,
+   "error": "no result.json (worker killed/cancelled?)",
+   "started_at": null,
+   "finished_at": null,
+   "duration_seconds": null
+  },
+  {
+   "task_id": "demo-selftest-1",
+   "shard_id": 2,
+   "status": "missing",
+   "result": null,
+   "error": "no result.json (worker killed/cancelled?)",
+   "started_at": null,
+   "finished_at": null,
+   "duration_seconds": null
+  },
+  {
+   "task_id": "demo-selftest-1",
+   "shard_id": 3,
+   "status": "missing",
+   "result": null,
+   "error": "no result.json (worker killed/cancelled?)",
+   "started_at": null,
+   "finished_at": null,
+   "duration_seconds": null
+  }
+ ]
+}
