@@ -1,7 +1,6 @@
-## 2026-09-11T14:06:30Z cpu=4 mem=15G
-Hermes Agent v0.21.1 (2026.9.7) · upstream 04dd80a9
-Install directory: /home/runner/.hermes/hermes-agent
-Install method: git
-Python: 3.11.16
-OpenAI SDK: 2.24.0
-Up to date
+## forge run 2026-09-11T14:32:41Z
+runner=runnervmlun5p cpu=4 mem=15G disk=87G free
+action=probe
+hermes: NOT_FOUND
+/home/runner/work/_temp/7d0149d5-1e2e-4223-a941-d58dd2985e72.sh: line 6: hermes: command not found
+--- install tail ---
