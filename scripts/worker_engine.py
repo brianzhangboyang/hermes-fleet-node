@@ -16,7 +16,80 @@ SHELL_WHITELIST = {
     "cat", "ls", "wc", "head", "tail", "grep", "awk", "sed", "sort", "uniq",
     "curl", "wget", "python3", "pip", "node", "npm", "git", "sleep", "env",
     "whoami", "id", "uptime", "vmstat", "iostat", "ping", "dig", "nslookup",
+    "tr", "tee", "mkdir", "cp", "touch", "du", "stat", "file", "cut", "base64",
 }
+SHELL_CONTROL = {"for", "while", "until", "if", "then", "else", "elif", "fi",
+                "do", "done", "in", "case", "esac", "export", "local", "{"}
+
+
+def _lex(line: str):
+    """shlex词法: 产出 (token, was_quoted) 序列。词法天然引号感知。"""
+    import shlex
+    lex = shlex.shlex(line, posix=True)
+    lex.whitespace_split = True
+    lex.commenters = ""
+    try:
+        toks = list(lex)
+    except ValueError:
+        return None
+    # was_quoted: 重建不可靠, 用原始行近似——带引号的token在shlex后丢失标记,
+    # 简化处理: 含空格/特殊字符的token必来自引号
+    out = []
+    for t in toks:
+        quoted = (" " in t or ";" in t or "&" in t or "|" in t or "$" in t
+                  or "{" in t or "}" in t or "(" in t or ")" in t)
+        out.append((t, quoted))
+    return out
+
+
+SHELL_BUILTIN_OK = {"true", "false", "test", "[", "printf", "cd", "set", "shift", ":"}
+SPLIT_OPS = {";", "&&", "||", "|", "&"}
+
+
+def shell_line_ok(line: str):
+    """词法级白名单: 每个分号/管道/&&段的首token(跳赋值与控制词)必须在白名单。
+    heredoc 拒绝; $()/反引号命令替换拒绝(词法会带$(开头,视为违规头)。"""
+    if "<<" in line:
+        return False, "heredoc-unsupported(用单行命令)"
+    toks = _lex(line)
+    if toks is None:
+        return False, "unbalanced-quotes"
+    seg_first = True
+    loop_head = False
+    for t, quoted in toks:
+        if loop_head:
+            if t == "do":
+                loop_head = False
+            continue
+        if t in SPLIT_OPS:
+            seg_first = True if t != "&" else seg_first
+            continue
+        if t == "for":
+            loop_head = True
+            seg_first = False
+            continue
+        if not seg_first:
+            continue
+        if t in SHELL_CONTROL or t in SHELL_BUILTIN_OK:
+            continue
+        if _looks_assignment(t):
+            continue
+        if t.startswith("$(") or t.startswith("`"):
+            return False, "command-substitution-unsupported"
+        if quoted:
+            seg_first = False  # 引号token=数据, 不该是命令头
+            continue
+        if t not in SHELL_WHITELIST:
+            return False, t
+        seg_first = False
+    return True, None
+
+
+def _looks_assignment(tok: str):
+    import re
+    return bool(re.match(r"^[A-Za-z_][A-Za-z0-9_]*=", tok))
+
+
 MAX_OUT = 4000  # 单片结果截断, 保护 artifact 存储
 
 
@@ -37,9 +110,9 @@ def exec_shell(ins, tmo):
     lines = []
     any_ok, any_fail = False, False
     for cmd in filter(None, (l.strip() for l in ins.splitlines())):
-        head = cmd.split()[0]
-        if head not in SHELL_WHITELIST:
-            lines.append(f"$ {cmd}\n  REJECTED: '{head}' 不在白名单")
+        allowed, bad = shell_line_ok(cmd)
+        if not allowed:
+            lines.append(f"$ {cmd}\n  REJECTED: '{bad}' 不在白名单")
             any_fail = True
             continue
         try:
