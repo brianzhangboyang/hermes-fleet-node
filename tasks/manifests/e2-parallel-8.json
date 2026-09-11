@@ -1,0 +1,15 @@
+{
+  "task_id": "e2-parallel-8",
+  "objective": "E2并发规模测试: 8个独立http_probe+shell shard, 记录排队/启动/完成时序",
+  "created_by": "hermes-op005",
+  "shards": [
+    {"shard_id": 1, "kind": "http_probe", "instructions": "https://europages.co.uk\nhttps://www.alibaba.com", "expected_output": "2站HTTP状态", "timeout_seconds": 120},
+    {"shard_id": 2, "kind": "http_probe", "instructions": "https://www.thomasnet.com\nhttps://www.kompass.com", "expected_output": "2站HTTP状态", "timeout_seconds": 120},
+    {"shard_id": 3, "kind": "http_probe", "instructions": "https://www.tradeindia.com\nhttps://in.enabiz.com", "expected_output": "2站HTTP状态", "timeout_seconds": 120},
+    {"shard_id": 4, "kind": "http_probe", "instructions": "https://www.made-in-china.com\nhttps://goldsupplier.com", "expected_output": "2站HTTP状态", "timeout_seconds": 120},
+    {"shard_id": 5, "kind": "shell", "instructions": "date -u +%FT%T.%3NZ\nnproc\nfree -g | head -2\necho shard5-done", "expected_output": "启动时刻+资源", "timeout_seconds": 60},
+    {"shard_id": 6, "kind": "shell", "instructions": "date -u +%FT%T.%3NZ\ncurl -s -o /dev/null -w '%{http_code}' https://example.com\necho shard6-done", "expected_output": "启动时刻+1探测", "timeout_seconds": 60},
+    {"shard_id": 7, "kind": "python", "instructions": "import time, platform\nprint('shard7', time.strftime('%T', time.gmtime()), platform.machine())", "expected_output": "时刻+架构", "timeout_seconds": 60},
+    {"shard_id": 8, "kind": "http_probe", "instructions": "https://www.exportersindia.com\nhttps://tradekey.com", "expected_output": "2站HTTP状态", "timeout_seconds": 120}
+  ]
+}
