@@ -1,0 +1,119 @@
+{
+ "task_id": "e4-parallel-16",
+ "objective": "E4规模测试: 16路并发上限探测(Free档配额20)",
+ "created_by": "hermes-op005",
+ "shards": [
+  {
+   "shard_id": 1,
+   "kind": "http_probe",
+   "instructions": "https://example.com",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 2,
+   "kind": "http_probe",
+   "instructions": "https://httpbin.org/get",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 3,
+   "kind": "http_probe",
+   "instructions": "https://www.wikipedia.org",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 4,
+   "kind": "http_probe",
+   "instructions": "https://github.com",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 5,
+   "kind": "http_probe",
+   "instructions": "https://python.org",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 6,
+   "kind": "http_probe",
+   "instructions": "https://www.mozilla.org",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 7,
+   "kind": "http_probe",
+   "instructions": "https://archive.org",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 8,
+   "kind": "http_probe",
+   "instructions": "https://www.gnu.org",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 9,
+   "kind": "http_probe",
+   "instructions": "https://developers.google.com",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 10,
+   "kind": "http_probe",
+   "instructions": "https://stackoverflow.com",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 11,
+   "kind": "http_probe",
+   "instructions": "https://pypi.org",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 12,
+   "kind": "http_probe",
+   "instructions": "https://docs.github.com",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 13,
+   "kind": "http_probe",
+   "instructions": "https://www.rabbitmq.com",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 14,
+   "kind": "http_probe",
+   "instructions": "https://www.postgresql.org",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 15,
+   "kind": "http_probe",
+   "instructions": "https://www.nginx.com",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  },
+  {
+   "shard_id": 16,
+   "kind": "http_probe",
+   "instructions": "https://sqlite.org",
+   "expected_output": "HTTP状态+耗时",
+   "timeout_seconds": 90
+  }
+ ]
+}
