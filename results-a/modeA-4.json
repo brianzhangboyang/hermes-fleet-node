@@ -1,0 +1,19 @@
+{
+ "task_id": "e3-partial-fail",
+ "shard_id": 4,
+ "status": "success",
+ "result": {
+  "probes": [
+   {
+    "url": "https://example.com",
+    "probe": "200 0.029087s"
+   }
+  ],
+  "_partial_fail": false
+ },
+ "error": null,
+ "started_at": "2026-09-11T15:51:42Z",
+ "finished_at": "2026-09-11T15:51:42Z",
+ "duration_seconds": 0.0,
+ "runner": "runnervmlun5p"
+}
