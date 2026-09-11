@@ -1,0 +1,170 @@
+{
+ "task_id": "e2-parallel-8",
+ "verdict": "SUCCESS",
+ "shards_total": 8,
+ "shards_ok": 8,
+ "shards_failed": 0,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-11T15:45:09Z",
+ "shards": [
+  {
+   "task_id": "e2-parallel-8",
+   "shard_id": 1,
+   "status": "success",
+   "result": {
+    "probes": [
+     {
+      "url": "https://europages.co.uk",
+      "probe": "301 0.561098s"
+     },
+     {
+      "url": "https://www.alibaba.com",
+      "probe": "200 0.794848s"
+     }
+    ],
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:44:57Z",
+   "finished_at": "2026-09-11T15:44:59Z",
+   "duration_seconds": 1.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e2-parallel-8",
+   "shard_id": 2,
+   "status": "success",
+   "result": {
+    "probes": [
+     {
+      "url": "https://www.thomasnet.com",
+      "probe": "403 0.153148s"
+     },
+     {
+      "url": "https://www.kompass.com",
+      "probe": "403 0.575297s"
+     }
+    ],
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:44:58Z",
+   "finished_at": "2026-09-11T15:44:58Z",
+   "duration_seconds": 0.7,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e2-parallel-8",
+   "shard_id": 3,
+   "status": "success",
+   "result": {
+    "probes": [
+     {
+      "url": "https://www.tradeindia.com",
+      "probe": "200 0.239346s"
+     },
+     {
+      "url": "https://in.enabiz.com",
+      "probe": "000 0.278595s"
+     }
+    ],
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:44:57Z",
+   "finished_at": "2026-09-11T15:44:57Z",
+   "duration_seconds": 0.5,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e2-parallel-8",
+   "shard_id": 4,
+   "status": "success",
+   "result": {
+    "probes": [
+     {
+      "url": "https://www.made-in-china.com",
+      "probe": "200 0.354742s"
+     },
+     {
+      "url": "https://goldsupplier.com",
+      "probe": "301 3.177207s"
+     }
+    ],
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:44:57Z",
+   "finished_at": "2026-09-11T15:45:00Z",
+   "duration_seconds": 3.5,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e2-parallel-8",
+   "shard_id": 5,
+   "status": "success",
+   "result": {
+    "output": "$ date -u +%FT%T.%3NZ\n[exit=0]\n2026-09-11T15:44:58.313Z\n\n\n$ nproc\n[exit=0]\n4\n\n\n$ free -g | head -2\n[exit=0]\n               total        used        free      shared  buff/cache   available\nMem:              15           0          12           0           2          14\n\n\n$ echo shard5-done\n[exit=0]\nshard5-done\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:44:58Z",
+   "finished_at": "2026-09-11T15:44:58Z",
+   "duration_seconds": 0.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e2-parallel-8",
+   "shard_id": 6,
+   "status": "success",
+   "result": {
+    "output": "$ date -u +%FT%T.%3NZ\n[exit=0]\n2026-09-11T15:44:56.617Z\n\n\n$ curl -s -o /dev/null -w '%{http_code}' https://example.com\n[exit=0]\n200\n\n$ echo shard6-done\n[exit=0]\nshard6-done\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:44:56Z",
+   "finished_at": "2026-09-11T15:44:56Z",
+   "duration_seconds": 0.1,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e2-parallel-8",
+   "shard_id": 7,
+   "status": "success",
+   "result": {
+    "exit": 0,
+    "output": "shard7 15:44:56 x86_64\n",
+    "stderr": "",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:44:56Z",
+   "finished_at": "2026-09-11T15:44:56Z",
+   "duration_seconds": 0.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e2-parallel-8",
+   "shard_id": 8,
+   "status": "success",
+   "result": {
+    "probes": [
+     {
+      "url": "https://www.exportersindia.com",
+      "probe": "200 0.810923s"
+     },
+     {
+      "url": "https://tradekey.com",
+      "probe": "301 0.150280s"
+     }
+    ],
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:44:57Z",
+   "finished_at": "2026-09-11T15:44:58Z",
+   "duration_seconds": 1.0,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
