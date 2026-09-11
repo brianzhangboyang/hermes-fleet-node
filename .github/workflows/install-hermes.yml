@@ -1,0 +1,21 @@
+name: install-hermes
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/install-hermes.yml'
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Env survey
+        run: |
+          echo "runner: $(hostname) $(nproc)c $(free -g | awk 'NR==2{print $2"G"}')" > result.txt
+          curl -fsSL --max-time 120 https://hermes-agent.nousresearch.com/install.sh > install.sh 2>install.err; echo "install.sh bytes=$(wc -c < install.sh 2>/dev/null)" >> result.txt
+          head -3 install.err >> result.txt 2>/dev/null || true
+          cat result.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: probe-result
+          path: result.txt
+
