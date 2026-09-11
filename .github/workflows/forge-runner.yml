@@ -1,0 +1,32 @@
+name: forge-runner
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/forge-runner.yml'
+permissions:
+  contents: write
+jobs:
+  forge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cleanup junk
+        run: |
+          rm -rf .github/workflows/.github install-hermes.yml .github/workflows/install-hermes.yml
+          ls -la .github/workflows/ || true
+      - name: Download hermes installer
+        run: |
+          curl -fsSL --max-time 60 https://hermes-agent.nousresearch.com/install.sh -o install.sh
+          echo "bytes=$(wc -c < install.sh)"
+      - name: Report and push
+        run: |
+          { echo "## runner $(hostname)"; echo "cpu=$(nproc) mem=$(free -g | awk 'NR==2{print $2}')G";
+            echo "installer_bytes=$(wc -c < install.sh)";
+            echo "## ts $(date -u +%FT%TZ)"; } > REPORT.md
+          cat REPORT.md
+          git config user.name fleet-bot
+          git config user.email brianzhangboyang@gmail.com
+          git add -A
+          git commit -m "forge report + junk cleanup [skip ci]" || true
+          git push || true
