@@ -1,0 +1,11 @@
+{
+  "task_id": "e3-partial-fail",
+  "objective": "E3失败注入: 2成功+1主动失败+1超时, 验证PARTIAL_SUCCESS与逐片识别",
+  "created_by": "hermes-op005",
+  "shards": [
+    {"shard_id": 1, "kind": "shell", "instructions": "echo ok-1\ndate -u", "expected_output": "ok-1", "timeout_seconds": 60},
+    {"shard_id": 2, "kind": "python", "instructions": "import sys\nsys.exit(3)", "expected_output": "应判failed(exit=3)", "timeout_seconds": 60},
+    {"shard_id": 3, "kind": "python", "instructions": "import time\ntime.sleep(999)", "expected_output": "应判timeout", "timeout_seconds": 15},
+    {"shard_id": 4, "kind": "http_probe", "instructions": "https://example.com", "expected_output": "200", "timeout_seconds": 60}
+  ]
+}
