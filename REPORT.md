@@ -1,6 +1,13 @@
-## forge run 2026-09-11T14:32:41Z
-runner=runnervmlun5p cpu=4 mem=15G disk=87G free
-action=probe
-hermes: NOT_FOUND
-/home/runner/work/_temp/7d0149d5-1e2e-4223-a941-d58dd2985e72.sh: line 6: hermes: command not found
+## forge run 2026-09-11T14:34:11Z
+runner=runnervmlun5p cpu=4 mem=15G disk=85G free
+action=install
+hermes: /home/runner/.local/bin/hermes
+Hermes Agent v0.21.1 (2026.9.7) · upstream 0b8daf30
+Install directory: /home/runner/.hermes/hermes-agent
 --- install tail ---
+[0;36m─────────────────────────────────────────────────────────[0m
+
+[0;33m⚡ Reload your shell to use 'hermes' command:[0m
+
+   source ~/.bashrc
+
