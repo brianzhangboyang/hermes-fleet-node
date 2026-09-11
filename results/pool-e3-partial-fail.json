@@ -1,0 +1,71 @@
+{
+ "task_id": "e3-partial-fail",
+ "verdict": "PARTIAL_SUCCESS",
+ "shards_total": 4,
+ "shards_ok": 2,
+ "shards_failed": 2,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-11T15:48:38Z",
+ "shards": [
+  {
+   "task_id": "e3-partial-fail",
+   "shard_id": 1,
+   "status": "success",
+   "result": {
+    "output": "$ echo ok-1\n[exit=0]\nok-1\n\n\n$ date -u\n[exit=0]\nFri Sep 11 15:48:13 UTC 2026\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:48:13Z",
+   "finished_at": "2026-09-11T15:48:13Z",
+   "duration_seconds": 0.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e3-partial-fail",
+   "shard_id": 2,
+   "status": "failed",
+   "result": {
+    "exit": 3,
+    "output": "",
+    "stderr": "",
+    "_partial_fail": true
+   },
+   "error": "python 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-11T15:48:12Z",
+   "finished_at": "2026-09-11T15:48:12Z",
+   "duration_seconds": 0.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e3-partial-fail",
+   "shard_id": 3,
+   "status": "timeout",
+   "result": null,
+   "error": "shard exceeded 15s",
+   "started_at": "2026-09-11T15:48:12Z",
+   "finished_at": "2026-09-11T15:48:27Z",
+   "duration_seconds": 15.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "e3-partial-fail",
+   "shard_id": 4,
+   "status": "success",
+   "result": {
+    "probes": [
+     {
+      "url": "https://example.com",
+      "probe": "200 0.069086s"
+     }
+    ],
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-11T15:48:13Z",
+   "finished_at": "2026-09-11T15:48:13Z",
+   "duration_seconds": 0.1,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
