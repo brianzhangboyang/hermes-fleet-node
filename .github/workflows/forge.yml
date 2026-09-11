@@ -1,21 +1,44 @@
 name: forge
+# 达尔文熔炉 · GitHub 免费 runner 锻造工
+# 用途: 按需拉起 ubuntu-latest 免费算力, 装/验证 Hermes, 报告回写仓库
+# 触发: 手动 workflow_dispatch (最省), 不再 push 自触发避免刷屏
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/forge.yml'
+    inputs:
+      action:
+        description: 'install = 装并自检 Hermes; probe = 只报环境'
+        required: false
+        default: 'install'
+        type: choice
+        options: ['install', 'probe']
 permissions:
   contents: write
 jobs:
   forge:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - run: bash install.sh --skip-setup --skip-browser --skip-computer-use > install.log 2>&1 || echo EXIT_FAIL >> install.log
-      - run: tail -8 install.log
-      - run: |
-          echo "## $(date -u +%FT%TZ) cpu=$(nproc) mem=$(free -g | awk 'NR==2{print $2}')G" > REPORT.md
-          export PATH="$HOME/.local/bin:$PATH"; hermes --version >> REPORT.md 2>&1 || tail -5 install.log >> REPORT.md
-          git config user.name fleet-bot; git config user.email brianzhangboyang@gmail.com
-          git add -A; git commit -m "forge report [skip ci]"; git push
+      - name: Fetch installer
+        run: curl -fsSL --max-time 60 https://hermes-agent.nousresearch.com/install.sh -o /tmp/install.sh && echo "bytes=$(wc -c < /tmp/install.sh)"
+      - name: Install hermes (non-interactive)
+        if: github.event.inputs.action != 'probe'
+        run: bash /tmp/install.sh --skip-setup --skip-browser --skip-computer-use > /tmp/install.log 2>&1 || echo "INSTALL_EXIT=$?" >> /tmp/install.log
+      - name: Verify + write report
+        run: |
+          export PATH="$HOME/.local/bin:$HOME/.hermes/bin:$PATH"
+          { echo "## forge run $(date -u +%FT%TZ)"
+            echo "runner=$(hostname) cpu=$(nproc) mem=$(free -g | awk 'NR==2{print $2}')G disk=$(df -h / | awk 'NR==2{print $4}') free"
+            echo "action=${{ github.event.inputs.action }}"
+            echo "hermes: $(command -v hermes || echo NOT_FOUND)"
+            hermes --version 2>&1 | head -2 || true
+            echo "--- install tail ---"; tail -6 /tmp/install.log 2>/dev/null || true
+          } > REPORT.md
+          cat REPORT.md
+      - name: Push report only
+        run: |
+          git config user.name fleet-bot
+          git config user.email brianzhangboyang@gmail.com
+          git add REPORT.md
+          git commit -m "forge report $(date -u +%FT%TZ) [skip ci]" || echo "no change"
+          git push
