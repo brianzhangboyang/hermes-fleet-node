@@ -1,0 +1,22 @@
+{
+ "task_id": "biweekly-mail-check",
+ "objective": "GHAP周频排班C(每月1/15日12:00CST): 邮箱域从仓内lead样本(tasks/payloads/fob_leads_20260906.json.gz)正则提取(去重≤16域), DNS(MX/A/SPF)+port25 banner 批查, 产出可投递性标记(450灰=对方策略非故障)",
+ "created_by": "hermes-r11-schedule",
+ "schedule_hint": "cron '0 4 1,15 * *' UTC = 每月1/15日 12:00 CST",
+ "shards": [
+  {
+   "shard_id": 1,
+   "kind": "shell",
+   "instructions": "python3 -c 'import json,gzip,re;s=gzip.decompress(open(\"tasks/payloads/fob_leads_20260906.json.gz\",\"rb\").read()).decode(\"utf-8\");ds=sorted({m.lower().strip(\".\") for m in re.findall(r\"[A-Za-z0-9._%+-]+@([A-Za-z0-9.-]+[.][A-Za-z]{2,})\",s)})[:16];print(json.dumps({\"domains\":ds,\"n\":len(ds)}))'",
+   "expected_output": "域清单JSON(数量+列表, 上限16)",
+   "timeout_seconds": 60
+  },
+  {
+   "shard_id": 2,
+   "kind": "shell",
+   "instructions": "pip install -q dnspython && python3 -c 'import gzip,re,subprocess;s=gzip.decompress(open(\"tasks/payloads/fob_leads_20260906.json.gz\",\"rb\").read()).decode(\"utf-8\");ds=sorted({m.lower().strip(\".\") for m in re.findall(r\"[A-Za-z0-9._%+-]+@([A-Za-z0-9.-]+[.][A-Za-z]{2,})\",s)})[:16];print(subprocess.run([\"python3\",\"scripts/mail_domain_probe.py\"]+ds,capture_output=True,text=True).stdout)'",
+   "expected_output": "每域 mx/a/spf/port25 banner+verdict 数组JSON",
+   "timeout_seconds": 300
+  }
+ ]
+}
