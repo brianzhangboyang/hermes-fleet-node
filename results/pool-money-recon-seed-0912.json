@@ -1,0 +1,151 @@
+{
+ "task_id": "money-recon-seed-0912",
+ "verdict": "PARTIAL_SUCCESS",
+ "shards_total": 10,
+ "shards_ok": 1,
+ "shards_failed": 9,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-12T16:48:03Z",
+ "shards": [
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 1,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=make+money+online&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:42Z",
+   "finished_at": "2026-09-12T16:47:43Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 2,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=freelance+platform&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:43Z",
+   "finished_at": "2026-09-12T16:47:43Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 3,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=side+project+revenue&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:44Z",
+   "finished_at": "2026-09-12T16:47:44Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 4,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=micro+saas+revenue&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:42Z",
+   "finished_at": "2026-09-12T16:47:42Z",
+   "duration_seconds": 0.2,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 5,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=data+labeling+job&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:43Z",
+   "finished_at": "2026-09-12T16:47:43Z",
+   "duration_seconds": 0.2,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 6,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=gpu+rental&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:43Z",
+   "finished_at": "2026-09-12T16:47:43Z",
+   "duration_seconds": 0.2,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 7,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=creator+economy&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:44Z",
+   "finished_at": "2026-09-12T16:47:44Z",
+   "duration_seconds": 0.2,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 8,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=prompt+selling&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:43Z",
+   "finished_at": "2026-09-12T16:47:44Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 9,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=stock+photos+income&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'\n[exit=1]\n\n  File \"<string>\", line 1\n    import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]\n                                                         ^\nSyntaxError: unexpected character after line continuation character\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:47:49Z",
+   "finished_at": "2026-09-12T16:47:49Z",
+   "duration_seconds": 0.2,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed-0912",
+   "shard_id": 10,
+   "status": "success",
+   "result": {
+    "output": "$ echo '== robots'; for u in fiverr.com upwork.com freelancer.com toptal.com vast.ai civitai.com adobestock.com medium.com etsy.com gengo.com itch.io prolific.com; do curl -s -m 8 -o /dev/null -w \"%{http_code} $u\\n\" https://$u/robots.txt; done; echo '== api-samples'; curl -s -m 10 https://remoteok.com/api | head -c 500; echo; curl -sm 10 'https://www.reddit.com/r/forhire/search.json?q=ai&restrict_sr=1&limit=6' -A 'Mozilla/5.0' | head -c 900; echo; curl -sm 10 'https://www.fiverr.com/categories/programming-tech' -A 'Mozilla/5.0' -o /dev/null -w 'fiverr-cat=%{http_code}\\n'; curl -sm 10 'https://api.github.com/search/repositories?q=make+money+with+AI&sort=stars&per_page=5' -H 'Accept: application/vnd.github+json' | head -c 800\n[exit=0]\n== robots\n301 fiverr.com\n403 upwork.com\n301 freelancer.com\n301 toptal.com\n200 vast.ai\n200 civitai.com\n301 adobestock.com\n200 medium.com\n301 etsy.com\n200 gengo.com\n200 itch.io\n308 prolific.com\n== api-samples\n[{\"last_updated\":1789228810,\"legal\":\"API Terms of Service: Please link back (with follow, and without nofollow!) to the URL on Remote OK and mention Remote OK as a source, so we get traffic back from your site. If you do not we'll have to suspend API access.\\n\\nPlease don't use the Remote OK logo without written permission as it's a registered trademark, please DO use our name Remote OK though.\"},{\"slug\":\"remote-marketing-student-assistant-copenhagen-optimization-1137381\",\"id\":\"1137381\",\"epoch\":\n<!doctype html>\n     <html>\n  <head>\n    <title>Blocked</title>\n    <style>\n      body {\n          font: small verdana, arial, helvetica, sans-serif;\n          width: 600px;\n          margin: 0 auto;\n      }\n\n      h1 {\n          height: 40px;\n          background: transparent url(//www.redditstatic.com/reddit.com.header.png) no-repeat scroll top right;\n      }\n    </style>\n  </head>\n  <body>\n    <h1>whoa there, pardner!</h1>\n\n<p>Your request has been blocked due to a network policy.</p>\n\n<p>Try logging in or creating an account <a href=https://www.reddit.com/login/>here</a> to get back to browsing.</p>\n\n<p>If you're running a script or application, please register or sign in with your developer credentials <a href=https://www.reddit.com/wiki/api/>here</a>. Additionally make sure your User-Agent is not empty and is something unique and descriptive and try again. if you're supplying an al\nfiverr-cat=200\n{\n  \"total_count\": 180,\n  \"incomplete_results\": false,\n  \"items\": [\n    {\n      \"id\": 887171538,\n      \"node_id\": \"R_kgDONOEp0g\",\n      \"name\": \"ai-money-maker-handbook\",\n      \"full_name\": \"XiaomingX/ai-money-maker-handbook\",\n      \"private\": false,\n      \"owner\": {\n        \"login\": \"XiaomingX\",\n        \"id\": 5387930,\n        \"node_id\": \"MDQ6VXNlcjUzODc5MzA=\",\n        \"avatar_url\": \"https://avatars.githubusercontent.com/u/5387930?v=4\",\n        \"gravatar_id\": \"\",\n        \"url\": \"https://api.github.com/users/XiaomingX\",\n        \"html_url\": \"https://github.com/XiaomingX\",\n        \"followers_url\": \"https://api.github.com/users/XiaomingX/followers\",\n        \"following_url\": \"https://api.github.com/users/XiaomingX/following{/other_user}\",\n        \"gists_url\": \"https://api.github.com/users/Xiaom\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T16:47:50Z",
+   "finished_at": "2026-09-12T16:47:54Z",
+   "duration_seconds": 3.8,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
