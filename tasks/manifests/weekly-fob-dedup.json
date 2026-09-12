@@ -1,0 +1,22 @@
+{
+ "task_id": "weekly-fob-dedup",
+ "objective": "GHAP周频排班A(每周一10:00CST): fob_demands_2026.json(gz入仓) 去重+品类分布快照+重复模式回归报警(max_copies_per_thread>1即疑似板块过滤失效)。产物=统计JSON+result_clean.json(artifact回收)",
+ "created_by": "hermes-r11-schedule",
+ "schedule_hint": "cron '0 2 * * 1' UTC = 周一 10:00 CST",
+ "shards": [
+  {
+   "shard_id": 1,
+   "kind": "python",
+   "instructions": "import json, ast, collections, gzip\nraw = gzip.decompress(open(\"tasks/payloads/fob_demands_2026.json.gz\",\"rb\").read())\nd = json.loads(raw.decode(\"utf-8\"))\nps = d[\"posts\"]\ntc = collections.Counter(str(p.get(\"thread_id\")) for p in ps)\nseen = set(); u = []\nfor p in ps:\n    t = p.get(\"thread_id\")\n    if t not in seen:\n        seen.add(t); u.append(p)\ncap = collections.Counter()\nfor p in u:\n    try:\n        for x in ast.literal_eval(str(p.get(\"\\u6d89\\u53ca\\u80fd\\u529b\") or \"[]\")):\n            cap[x] += 1\n    except Exception:\n        cap[\"unparsed\"] += 1\nout = {\n \"rows_raw\": len(ps),\n \"rows_unique_thread\": len(u),\n \"dup_removed\": len(ps) - len(u),\n \"max_copies_per_thread\": max(tc.values()) if tc else 0,\n \"regression_suspect\": bool(tc and max(tc.values()) > 1),\n \"dup_pattern_counts_per_thread\": dict(collections.Counter(tc.values())),\n \"reqtype_unique\": dict(collections.Counter(str(p.get(\"\\u9700\\u6c42\\u7c7b\\u578b\")) for p in u)),\n \"capability_unique\": dict(cap.most_common(20)),\n}\nprint(json.dumps(out, ensure_ascii=False))\n",
+   "expected_output": "去重前后行数/重复模式/最大拷贝倍数/回归flag/需求类型·能力分布 JSON",
+   "timeout_seconds": 120
+  },
+  {
+   "shard_id": 2,
+   "kind": "shell",
+   "instructions": "python3 -c 'import json,gzip;d=json.loads(gzip.decompress(open(\"tasks/payloads/fob_demands_2026.json.gz\",\"rb\").read()).decode(\"utf-8\"));ps=d[\"posts\"];seen=set();u=[p for p in ps if (p.get(\"thread_id\") not in seen and not seen.add(p.get(\"thread_id\")))];json.dump({\"posts\":u},open(\"result_clean.json\",\"w\"),ensure_ascii=False);print(\"rows_raw=%d unique=%d removed=%d\"%(len(ps),len(u),len(ps)-len(u)))'",
+   "expected_output": "result_clean.json 写入工作区(经artifact回收)+行数摘要",
+   "timeout_seconds": 120
+  }
+ ]
+}
