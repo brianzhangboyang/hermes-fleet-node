@@ -1,0 +1,70 @@
+{
+ "task_id": "money-recon-seed2-0912",
+ "objective": "Fleet money-platform recon v2: HN Algolia mining (fixed quoting). Read-only evidence rows for command center merge.",
+ "created_by": "boyang-command",
+ "shards": [
+  {
+   "shard_id": 1,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=make+money+online&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 2,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=freelance+platform&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 3,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=side+project+revenue&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 4,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=micro+saas+revenue&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 5,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=data+labeling+job&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 6,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=gpu+rental&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 7,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=creator+economy&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 8,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=prompt+selling&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 9,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=stock+photos+income&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'",
+   "expected_output": "HN story rows",
+   "timeout_seconds": 300
+  }
+ ]
+}
