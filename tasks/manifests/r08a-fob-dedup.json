@@ -1,0 +1,21 @@
+{
+ "task_id": "r08a-fob-dedup",
+ "objective": "常态化批次A(任务书3.12): fob_demands_2026.json(gz入仓) 去重+品类分布统计。产出: 统计台账 + 清洗后文件(artifact result_clean.json)",
+ "created_by": "hermes-r08",
+ "shards": [
+  {
+   "shard_id": 1,
+   "kind": "python",
+   "instructions": "import json, ast, collections, gzip\nraw = gzip.decompress(open(\"tasks/payloads/fob_demands_2026.json.gz\", \"rb\").read())\nd = json.loads(raw.decode(\"utf-8\"))\nps = d[\"posts\"]\nseen = set(); u = []\nfor p in ps:\n    t = p.get(\"thread_id\")\n    if t not in seen:\n        seen.add(t); u.append(p)\ncap = collections.Counter()\nfor p in u:\n    try:\n        for x in ast.literal_eval(str(p.get(\"\\u6d89\\u53ca\\u80fd\\u529b\") or \"[]\")):\n            cap[x] += 1\n    except Exception:\n        cap[\"unparsed\"] += 1\nout = {\n \"rows_raw\": len(ps),\n \"rows_unique_thread\": len(u),\n \"dup_removed\": len(ps) - len(u),\n \"dup_pattern_counts_per_thread\": dict(collections.Counter(collections.Counter(str(p.get(\"thread_id\")) for p in ps).values())),\n \"board_field_raw\": dict(collections.Counter(str(p.get(\"\\u6765\\u6e90\\u677f\\u5757\")) for p in ps)),\n \"reqtype_unique\": dict(collections.Counter(str(p.get(\"\\u9700\\u6c42\\u7c7b\\u578b\")) for p in u)),\n \"capability_unique\": dict(cap.most_common(20)),\n}\nprint(json.dumps(out, ensure_ascii=False))\n",
+   "expected_output": "去重前后行数/重复模式/板块·需求类型·能力分布 JSON",
+   "timeout_seconds": 120
+  },
+  {
+   "shard_id": 2,
+   "kind": "shell",
+   "instructions": "python3 -c 'import json,gzip;d=json.loads(gzip.decompress(open(\"tasks/payloads/fob_demands_2026.json.gz\",\"rb\").read()).decode(\"utf-8\"));ps=d[\"posts\"];seen=set();u=[p for p in ps if (p.get(\"thread_id\") not in seen and not seen.add(p.get(\"thread_id\")))];json.dump({\"posts\":u},open(\"result_clean.json\",\"w\"),ensure_ascii=False);print(\"rows_raw=%d unique=%d removed=%d\"%(len(ps),len(u),len(ps)-len(u)))'",
+   "expected_output": "result_clean.json 写入工作区(经artifact回收)+行数摘要",
+   "timeout_seconds": 120
+  }
+ ]
+}
