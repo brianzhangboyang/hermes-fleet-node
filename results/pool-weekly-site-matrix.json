@@ -1,0 +1,81 @@
+{
+ "task_id": "weekly-site-matrix",
+ "verdict": "SUCCESS",
+ "shards_total": 5,
+ "shards_ok": 5,
+ "shards_failed": 0,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-12T09:01:26Z",
+ "shards": [
+  {
+   "task_id": "weekly-site-matrix",
+   "shard_id": 1,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.alibaba.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.alibaba.com\nhome=200 t=0.639742s size=226700 final=https://www.alibaba.com/\nrobots=200 size=5406\n164\nsitemap=302\n\n\n$ u=www.made-in-china.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.made-in-china.com\nhome=200 t=0.260960s size=399824 final=https://www.made-in-china.com/\nrobots=200 size=2088\n45\nsitemap=404\n\n\n$ u=www.tradeindia.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.tradeindia.com\nhome=200 t=0.067819s size=779104 final=https://www.tradeindia.com/\nrobots=200 size=2090\n71\nsitemap=301\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T09:00:59Z",
+   "finished_at": "2026-09-12T09:01:02Z",
+   "duration_seconds": 2.7,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "weekly-site-matrix",
+   "shard_id": 2,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.dhgate.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.dhgate.com\nhome=403 t=0.121255s size=5511 final=https://www.dhgate.com/\nrobots=200 size=11054\n379\nsitemap=404\n\n\n$ u=www.ec21.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.ec21.com\nhome=403 t=0.067965s size=4544 final=https://www.ec21.com/\nrobots=403 size=4544\n0\nsitemap=403\n\n\n$ u=www.exportersindia.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.exportersindia.com\nhome=200 t=0.506441s size=335773 final=https://www.exportersindia.com/\nrobots=200 size=727\n24\nsitemap=301\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T09:00:58Z",
+   "finished_at": "2026-09-12T09:01:00Z",
+   "duration_seconds": 2.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "weekly-site-matrix",
+   "shard_id": 3,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.thomasnet.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.thomasnet.com\nhome=403 t=0.097192s size=773 final=https://www.thomasnet.com/\nrobots=403 size=773\n0\nsitemap=404\n\n\n$ u=www.kompass.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.kompass.com\nhome=403 t=0.457844s size=771 final=https://www.kompass.com/\nrobots=200 size=993\n29\nsitemap=302\n\n\n$ u=europages.co.uk; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== europages.co.uk\nhome=200 t=2.293225s size=458558 final=https://www.europages.co.uk:443/\nrobots=301 size=134\n0\nsitemap=301\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T09:00:59Z",
+   "finished_at": "2026-09-12T09:01:05Z",
+   "duration_seconds": 5.6,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "weekly-site-matrix",
+   "shard_id": 4,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.goldsupplier.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.goldsupplier.com\nhome=200 t=2.124038s size=136174 final=https://www.goldsupplier.com/\nrobots=200 size=286\n9\nsitemap=404\n\n\n$ u=www.tradekey.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.tradekey.com\nhome=200 t=1.267559s size=267490 final=https://www.tradekey.com/\nrobots=200 size=1892\n19\nsitemap=200\n\n\n$ u=www.globalsources.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.globalsources.com\nhome=429 t=0.570192s size=137 final=https://www.globalsources.com/\nrobots=403 size=919\n0\nsitemap=403\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T09:00:59Z",
+   "finished_at": "2026-09-12T09:01:11Z",
+   "duration_seconds": 11.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "weekly-site-matrix",
+   "shard_id": 5,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.mfg.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.mfg.com\nhome=200 t=0.108461s size=286991 final=https://www.mfg.com/\nrobots=403 size=919\n0\nsitemap=403\n\n\n$ u=www.tradewheel.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.tradewheel.com\nhome=403 t=0.096623s size=5536 final=https://www.tradewheel.com/\nrobots=200 size=214\n1\nsitemap=403\n\n\n$ u=www.exporthub.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; grep -c Disallow /tmp/r.txt; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.exporthub.com\nhome=403 t=0.087832s size=5450 final=https://www.exporthub.com/\nrobots=200 size=1383\n6\nsitemap=403\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T09:01:08Z",
+   "finished_at": "2026-09-12T09:01:10Z",
+   "duration_seconds": 1.3,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
