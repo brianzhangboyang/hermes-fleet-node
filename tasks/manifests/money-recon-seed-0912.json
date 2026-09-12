@@ -1,0 +1,77 @@
+{
+ "task_id": "money-recon-seed-0912",
+ "objective": "Fleet money-platform recon (2026-09-12 task book): programmatic HN Algolia mining of monetization platform mentions + crawlability probes of candidate platforms. Output = raw evidence rows for the command center's merged shortlist. Read-only, no registration.",
+ "created_by": "boyang-command",
+ "shards": [
+  {
+   "shard_id": 1,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=make+money+online&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 2,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=freelance+platform&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 3,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=side+project+revenue&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 4,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=micro+saas+revenue&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 5,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=data+labeling+job&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 6,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=gpu+rental&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 7,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=creator+economy&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 8,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=prompt+selling&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 9,
+   "kind": "shell",
+   "instructions": "curl -sm 25 'https://hn.algolia.com/api/v1/search?query=stock+photos+income&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\\\"points\\\"),h.get(\\\"created_at\\\",\\\"\\\")[:7],(h.get(\\\"title\\\") or \\\"\\\")[:150],h.get(\\\"url\\\") or \\\"\\\") for h in d[\\\"hits\\\"]]'",
+   "expected_output": "crawled rows",
+   "timeout_seconds": 300
+  },
+  {
+   "shard_id": 10,
+   "kind": "shell",
+   "instructions": "echo '== robots'; for u in fiverr.com upwork.com freelancer.com toptal.com vast.ai civitai.com adobestock.com medium.com etsy.com gengo.com itch.io prolific.com; do curl -s -m 8 -o /dev/null -w \"%{http_code} $u\\n\" https://$u/robots.txt; done; echo '== api-samples'; curl -s -m 10 https://remoteok.com/api | head -c 500; echo; curl -sm 10 'https://www.reddit.com/r/forhire/search.json?q=ai&restrict_sr=1&limit=6' -A 'Mozilla/5.0' | head -c 900; echo; curl -sm 10 'https://www.fiverr.com/categories/programming-tech' -A 'Mozilla/5.0' -o /dev/null -w 'fiverr-cat=%{http_code}\\n'; curl -sm 10 'https://api.github.com/search/repositories?q=make+money+with+AI&sort=stars&per_page=5' -H 'Accept: application/vnd.github+json' | head -c 800",
+   "expected_output": "robots codes + api samples",
+   "timeout_seconds": 420
+  }
+ ]
+}
