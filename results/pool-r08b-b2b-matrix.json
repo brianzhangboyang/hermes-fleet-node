@@ -1,0 +1,81 @@
+{
+ "task_id": "r08b-b2b-matrix",
+ "verdict": "SUCCESS",
+ "shards_total": 5,
+ "shards_ok": 5,
+ "shards_failed": 0,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-12T06:50:31Z",
+ "shards": [
+  {
+   "task_id": "r08b-b2b-matrix",
+   "shard_id": 1,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.alibaba.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.alibaba.com\nhome=200 t=0.885043s size=225811 final=https://www.alibaba.com/\n<title>Alibaba.com: Manufacturers, Suppliers, Exporters & Importers from the world's largest online B2B marketplace\n\nrobots=200 size=5406\ndisallow_rules=164\nUser-agent: *\nAllow: /lp/*?\nAllow: /*s=p\nAllow: /*?_escaped_fragment_\nAllow: /*src=sem_ggl\nAllow: *?src=sem_ggl\nAllow: /catalog/*?\nAllow: /product-detail/\nAllow: /showroom/\nAllow: *?spm=\nAllow: *?mark\nsitemap=302\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:16Z",
+   "finished_at": "2026-09-12T06:50:17Z",
+   "duration_seconds": 1.1,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "r08b-b2b-matrix",
+   "shard_id": 2,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.made-in-china.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.made-in-china.com\nhome=200 t=0.257244s size=399862 final=https://www.made-in-china.com/\n<title>Made-in-China.com - Manufacturers, Suppliers & Products in China\n\nrobots=200 size=2088\ndisallow_rules=45\nUser-agent: *\nUser-agent: AdsBot-Google\nUser-agent: AdsBot-Google-Mobile\nDisallow: /*.do$\nDisallow: /*.do?\nDisallow: /*.action$\nDisallow: /*.action?\nDisallow: /sendInquiry/\nDisallow: /browsing\nsitemap=404\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:17Z",
+   "finished_at": "2026-09-12T06:50:17Z",
+   "duration_seconds": 0.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "r08b-b2b-matrix",
+   "shard_id": 3,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.tradeindia.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.tradeindia.com\nhome=200 t=0.056721s size=779104 final=https://www.tradeindia.com/\n\nrobots=200 size=2090\ndisallow_rules=71\nUser-agent: *\nDisallow: /banner/\nDisallow: /inquiry_basket/\nDisallow: /component/\nDisallow: /login/\nDisallow: /my_tradeindia/\nDisallow: /registration/\nDisallow: /Homepage/\nDisallow: /video/\nDisallow: \nsitemap=301\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:18Z",
+   "finished_at": "2026-09-12T06:50:19Z",
+   "duration_seconds": 1.8,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "r08b-b2b-matrix",
+   "shard_id": 4,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.dhgate.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.dhgate.com\nhome=403 t=0.150530s size=5511 final=https://www.dhgate.com/\n<title>Just a moment...\n\nrobots=200 size=11054\ndisallow_rules=379\nUser-Agent: *\nAllow: /*?f=bm\nAllow: /*?utm_source\nAllow: /*?f=Social\nDisallow: /sellerPromise.do\nDisallow: /search.do\nDisallow: /promoproduct.do\nDisallow: /disc.do\nDisallow: /dcp/\nDisallow: /mydhgate/\nsitemap=404\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:16Z",
+   "finished_at": "2026-09-12T06:50:16Z",
+   "duration_seconds": 0.5,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "r08b-b2b-matrix",
+   "shard_id": 5,
+   "status": "success",
+   "result": {
+    "output": "$ u=www.ec21.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml\n[exit=0]\n== www.ec21.com\nhome=403 t=0.109971s size=4544 final=https://www.ec21.com/\n<title>Attention Required! | Cloudflare\n\nrobots=403 size=4544\ndisallow_rules=0\n<!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-\nsitemap=403\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:18Z",
+   "finished_at": "2026-09-12T06:50:18Z",
+   "duration_seconds": 0.2,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
