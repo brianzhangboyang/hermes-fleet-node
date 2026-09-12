@@ -1,0 +1,109 @@
+name: weekly-site-matrix
+# GHAP 周频排班 B —— 外贸B2B 15站可达性巡检 (每周三 11:00 CST = '0 3 * * 3' UTC)
+# 复用 worker-pool 的 plan->worker matrix->aggregate 架构; 唯一差别:
+#   manifest_path 不靠 dispatch inputs, 由 step 级 env 默认值解析
+#   (scheduled 触发时 github.event.inputs.* 为 null -> env 回落 '||' 分支)
+# schedule 仅默认分支(main)生效; 仓 60 天不活跃自动停用的风险由本排班自身保活。
+on:
+  workflow_dispatch:
+    inputs:
+      manifest_path:
+        description: '可选覆盖 manifest 路径 (留空=用下方默认 tasks/manifests/weekly-site-matrix.json)'
+        required: false
+        default: ''
+        type: string
+  schedule:
+    - cron: '0 3 * * 3'   # 周三 11:00 CST —— B2B 站点可达性巡检
+permissions:
+  contents: write
+concurrency:
+  group: weekly-site-matrix-pool
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      task_id: ${{ steps.v.outputs.task_id }}
+      matrix: ${{ steps.v.outputs.matrix }}
+      n_shards: ${{ steps.v.outputs.n_shards }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: v
+        name: Validate manifest & emit shards
+        env:
+          MP: ${{ github.event.inputs.manifest_path || 'tasks/manifests/weekly-site-matrix.json' }}
+        run: |
+          python3 scripts/plan_validator.py "$MP" >> "$GITHUB_OUTPUT"
+
+  worker:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: ${{ github.event.inputs.fail_fast == 'true' }}
+      max-parallel: ${{ fromJSON(github.event.inputs.max_parallel || '4') }}
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute shard (engine=worker_engine.py)
+        continue-on-error: true
+        id: run
+        env:
+          MP: ${{ github.event.inputs.manifest_path || 'tasks/manifests/weekly-site-matrix.json' }}
+          SID: ${{ matrix.shard.shard_id }}
+          TIMEOUT: ${{ matrix.shard.timeout_seconds }}
+        run: |
+          python3 scripts/worker_engine.py "$MP" "$SID" "$TIMEOUT"
+      - name: Upload result artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: result-${{ needs.plan.outputs.task_id }}-${{ matrix.shard.shard_id }}
+          path: result_*.json
+          retention-days: 7
+          if-no-files-found: error
+
+  aggregate:
+    needs: [plan, worker]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all shard results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: result-${{ needs.plan.outputs.task_id }}-*
+          path: results_in
+          merge-multiple: true
+      - name: Merge & decide verdict
+        env:
+          TID: ${{ needs.plan.outputs.task_id }}
+          NS: ${{ needs.plan.outputs.n_shards }}
+          EXPECT: ${{ needs.plan.outputs.matrix }}
+        run: |
+          python3 scripts/aggregator.py "$TID" "$NS" "$EXPECT" results_in merged
+      - name: Upload merged result
+        uses: actions/upload-artifact@v4
+        with:
+          name: summary-${{ needs.plan.outputs.task_id }}
+          path: merged/
+          retention-days: 14
+      - name: Write back to repo (single writer, with rebase-retry)
+        run: |
+          git config user.name fleet-bot
+          git config user.email brianzhangboyang@gmail.com
+          mkdir -p results
+          cp merged/*.json merged/*.md results/ 2>/dev/null || true
+          git add results/
+          git commit -m "pool result: ${{ needs.plan.outputs.task_id }} [skip ci]" || echo no-change
+          ok=0
+          for i in 1 2 3 4 5; do
+            if git push 2>/tmp/pusherr; then ok=1; break; fi
+            echo "push try $i failed: $(head -c 150 /tmp/pusherr | tr '\n' ' ')"
+            sleep $((i * 3 + RANDOM % 5))
+            git pull --rebase -q || { git rebase --abort 2>/dev/null; git pull -q; }
+          done
+          [ "$ok" = "1" ] || { echo "WRITEBACK_FAILED after 5 tries"; exit 1; }
