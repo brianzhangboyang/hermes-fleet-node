@@ -1,0 +1,137 @@
+{
+ "task_id": "money-recon-seed4-0912",
+ "verdict": "SUCCESS",
+ "shards_total": 9,
+ "shards_ok": 9,
+ "shards_failed": 0,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-12T17:01:17Z",
+ "shards": [
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 1,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=make+money+online&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\ndate 2015-03\nPTS 480\nT | Make Money Online: Documenting 10 Years of Failure\"\nU | http://johnathanward.com/make-money-online-failure/\"\ndate 2023-07\nPTS 97\nT | My first $10k internet dollars\"\ndate 2010-10\nPTS 113\nT | Ask HN: Living overseas with a profitable online business\"\ndate 2019-11\nPTS 100\nT | Launch HN: InsideSherpa (YC W19) \\u2013 online courses to train then hire students\"\ndate 2024-06\nPTS 86\nT | Show HN: Pickcode \\u2013 Free online code editor for kids\"\nU | https://pickcode.io\"\ndate 2021-08\nPTS 399\nT | Launch HN: Slip (YC S21) \\u2013 Build and sell interactive programming courses\"\ndate 2023-08\nPTS 186\nT | Launch HN: Certainly Health (YC S23) \\u2013 Book doctors without surprise bills\"\ndate 2009-11\nPTS 153\nT | Tell HN: Four (hopefully) unique and useful start-up tips\"\ndate 2020-08\nPTS 126\nT | Launch HN: Depict.ai (YC S20) \\u2013 Product recommendations for any e-commerce store\"\ndate 2020-03\nPTS 111\nT | Launch HN: Cotter (YC W20) \\u2013 Secure One-Click Phone Number Login\"\ndate 2021-02\nPTS 111\nT | Launch HN: Jiga (YC W21) \\u2013 Faster custom parts for hardware products\"\ndate 2020-07\nPTS 107\nT | Launch HN: [name-redacted] (YC [year-redacted]) \\u2013 Price A/B Testing for Shopify\"\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:01:09Z",
+   "finished_at": "2026-09-12T17:01:09Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 2,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=freelance+platform&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\ndate 2021-03\nPTS 134\nT | Show HN: CryptoTask \\u2013 a 0% fee freelance platform powered by blockchain\"\nU | https://about.cryptotask.org/\"\ndate 2021-08\nPTS 111\nT | Launch HN: Awesomic (YC S21) \\u2013 Get design tasks done with 24-hour turnaround\"\ndate 2020-02\nPTS 142\nT | Ask HN: Where do you find software development freelance work?\"\ndate 2024-04\nPTS 118\ndate 2018-03\nPTS 157\nT | Launch HN: SafetyWing (YC W18) \\u2013 A Global Safety Net for Digital Nomads\"\ndate 2014-12\nPTS 113\nT | Why you should think twice about Freelancer.com\"\ndate 2024-07\nPTS 94\nT | Ask HN: Freelancer's Dilemma \\u2013 Client Won't Pay Despite Clear Agreement\"\ndate 2017-03\nPTS 476\nT | Ask HN: How do I start my own consulting firm?\"\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:00:47Z",
+   "finished_at": "2026-09-12T17:00:48Z",
+   "duration_seconds": 0.9,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 3,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=side+project+revenue&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\ndate 2014-01\nPTS 166\nT | Ask HN: How do you drive web traffic to your successful side projects?\"\ndate 2016-07\nPTS 115\nT | Ask HN: What revenue generating side projects do full-time employees here have?\"\ndate 2016-07\nPTS 390\nT | Ask HN: Single Person startup/company?\"\ndate 2021-03\nPTS 153\nT | MailChimp: A side project that turned into a $700m/year revenue business\"\nU | https://entrepreneurshandbook.co/a-web-designer-turned-his-side-project-into-a-700m-year-revenue-business-without-vc-money-55cd13ee560\"\ndate 2020-12\nPTS 647\ndate 2023-04\nPTS 530\nT | Ask HN: Side project of more than $2k monthly revenue? what's your project?\"\ndate 2020-12\nPTS 442\nT | Show HN: After 10 years my side project has hit $8k/mo in revenue\"\ndate 2021-04\nPTS 381\nT | Show HN: Side project passed $2.5k/mo revenue after 2 years (Phoenix and Vue)\"\ndate 2015-01\nPTS 563\ndate 2017-07\nPTS 503\nT | Ask HN: What's a side project you built to make money that hasn't?\"\ndate 2020-12\nPTS 446\nT | Ask HN: What's a side project you built to make money that hasn't?\"\ndate 2016-10\nPTS 373\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:00:47Z",
+   "finished_at": "2026-09-12T17:00:48Z",
+   "duration_seconds": 0.6,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 4,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=micro+saas+revenue&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\ndate 2022-11\nPTS 149\nT | Launch HN: Patterns (YC S21) \\u2013 A much faster way to build and deploy data apps\"\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:00:47Z",
+   "finished_at": "2026-09-12T17:00:48Z",
+   "duration_seconds": 0.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 5,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=data+labeling+job&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:00:48Z",
+   "finished_at": "2026-09-12T17:00:49Z",
+   "duration_seconds": 0.9,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 6,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=gpu+rental&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\ndate 2024-10\nPTS 403\nT | $2 H100s: How the GPU Rental Bubble Burst\"\nU | https://www.latent.space/p/gpu-bubble\"\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:00:48Z",
+   "finished_at": "2026-09-12T17:00:48Z",
+   "duration_seconds": 0.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 7,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=creator+economy&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\ndate 2020-12\nPTS 168\nT | Building the Middle Class of the Creator Economy\"\nU | https://li.substack.com/p/building-the-middle-class-of-the\"\ndate 2024-02\nPTS 135\nT | The creator economy can't rely on Patreon\"\nU | https://joanwestenberg.com/blog/the-creator-economy-cant-rely-on-patreon\"\ndate 2020-07\nPTS 94\nT | From the gig economy to the creator economy to the participatory economy\"\nU | https://sariazout.substack.com/p/check-your-pulse-48\"\ndate 2025-12\nPTS 87\nT | How the Creator Economy Destroyed the Internet\"\nU | https://www.theverge.com/cs/features/810002/influencers-creator-economy-special-series\"\ndate 2021-08\nPTS 377\nT | Launch HN: BlackOakTV (YC S21) \\u2013 Netflix for black people\"\ndate 2021-05\nPTS 577\nT | Writing books is not really a good idea\"\nU | https://ellegriffin.substack.com/p/creator-economy-for-fiction-authors\"\ndate 2023-07\nPTS 223\nT | Shopify elevated the non-manager career path and ditched meetings\"\nU | https://creatoreconomy.so/p/kaz-coo-shopify-craft-and-no-meetings\"\ndate 2023-10\nPTS 92\nT | Watch this guy work and you'll finally understand the TikTok era\"\nU | https://www.wired.com/story/tiktok-talent-factory-ursus-magana-creator-economy/\"\ndate 2024-01\nPTS 293\nT | Launch HN: Rosebud (YC S19) \\u2013 Turn game descriptions into browser games\"\ndate 2021-02\nPTS 222\nT | Launch HN: Wasp (YC W21) \\u2013 DSL for building full-stack web apps\"\ndate 2023-01\nPTS 94\nT | Launch HN: MagnaPlay (YC W23) \\u2013 Indie gaming subscription service for PC\"\ndate 2026-02\nPTS 220\nT | Show HN: A real-time strategy game that AI agents can play\"\nU | https://llmskirmish.com/\"\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:00:47Z",
+   "finished_at": "2026-09-12T17:00:48Z",
+   "duration_seconds": 0.5,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 8,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=prompt+selling&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\ndate 2026-04\nPTS 303\nT | OpenAI ad partner now selling ChatGPT ad placements based on \\u201cprompt relevance\\u201d\"\nU | https://www.adweek.com/media/exclusive-leaked-deck-reveals-stackadapts-playbook-for-chatgpt-ads/\"\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:00:48Z",
+   "finished_at": "2026-09-12T17:00:49Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed4-0912",
+   "shard_id": 9,
+   "status": "success",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=stock+photos+income&tags=story&hitsPerPage=12&numericFilters=points%3E80' | tr ',' '\\n' | grep -oE '\"(points|created_at|title|url)\":(\"[^\"]*\"|[0-9]+)' | sed -E 's/\"created_at\":\"([0-9]{4}-[0-9]{2}).*/date \\1/; s/\"points\":/PTS /; s/\"title\":\"/T | /; s/\"url\":\"/U | /; s/\"hit\":\\{//g'\n[exit=0]\ndate 2026-03\nPTS 111\nT | Launch HN: OctaPulse (YC W26) \\u2013 Robotics and computer vision for fish farming\"\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T17:00:55Z",
+   "finished_at": "2026-09-12T17:00:55Z",
+   "duration_seconds": 0.5,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
