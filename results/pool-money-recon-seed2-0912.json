@@ -1,0 +1,137 @@
+{
+ "task_id": "money-recon-seed2-0912",
+ "verdict": "FAILED",
+ "shards_total": 9,
+ "shards_ok": 0,
+ "shards_failed": 9,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-12T16:51:13Z",
+ "shards": [
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 1,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=make+money+online&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:50:56Z",
+   "finished_at": "2026-09-12T16:50:56Z",
+   "duration_seconds": 0.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 2,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=freelance+platform&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:50:55Z",
+   "finished_at": "2026-09-12T16:50:55Z",
+   "duration_seconds": 0.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 3,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=side+project+revenue&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:50:55Z",
+   "finished_at": "2026-09-12T16:50:55Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 4,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=micro+saas+revenue&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:50:55Z",
+   "finished_at": "2026-09-12T16:50:55Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 5,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=data+labeling+job&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:50:55Z",
+   "finished_at": "2026-09-12T16:50:55Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 6,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=gpu+rental&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:50:55Z",
+   "finished_at": "2026-09-12T16:50:55Z",
+   "duration_seconds": 0.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 7,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=creator+economy&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:50:55Z",
+   "finished_at": "2026-09-12T16:50:55Z",
+   "duration_seconds": 0.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 8,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=prompt+selling&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:50:55Z",
+   "finished_at": "2026-09-12T16:50:56Z",
+   "duration_seconds": 0.5,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "money-recon-seed2-0912",
+   "shard_id": 9,
+   "status": "failed",
+   "result": {
+    "output": "$ curl -sm 25 'https://hn.algolia.com/api/v1/search?query=stock+photos+income&tags=story&hitsPerPage=15&numericFilters=points>80' | python3 -c 'import json,sys;d=json.load(sys.stdin);[print(h.get(\"points\"),h.get(\"created_at\",\"\")[:7],(h.get(\"title\") or \"\")[:150],h.get(\"url\") or \"\") for h in d[\"hits\"]]'\n[exit=1]\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+    "_partial_fail": true
+   },
+   "error": "shell 内部全部子项失败(见result明细)",
+   "started_at": "2026-09-12T16:51:03Z",
+   "finished_at": "2026-09-12T16:51:03Z",
+   "duration_seconds": 0.3,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
