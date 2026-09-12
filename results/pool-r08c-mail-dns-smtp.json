@@ -1,0 +1,53 @@
+{
+ "task_id": "r08c-mail-dns-smtp",
+ "verdict": "SUCCESS",
+ "shards_total": 3,
+ "shards_ok": 3,
+ "shards_failed": 0,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-12T06:50:37Z",
+ "shards": [
+  {
+   "task_id": "r08c-mail-dns-smtp",
+   "shard_id": 1,
+   "status": "success",
+   "result": {
+    "output": "$ pip install -q dnspython && python3 scripts/r08_smtp_probe.py 163.com 126.com\n[exit=0]\n[{\"domain\": \"163.com\", \"mx\": [\"163mx01.mxmail.netease.com\", \"163mx03.mxmail.netease.com\", \"163mx02.mxmail.netease.com\"], \"a\": [\"59.111.160.244\"], \"spf\": \"\\\"v=spf1 include:spf.mail.163.com -all\\\"\", \"target\": \"163mx01.mxmail.netease.com\", \"smtp25_banner\": \"220 163.com Anti-spam GT for Coremail System. ESMTP ready\", \"verdict\": \"PORT25_OPEN\"}, {\"domain\": \"126.com\", \"mx\": [\"126mx03.mxmail.netease.com\", \"126mx01.mxmail.netease.com\", \"126mx02.mxmail.netease.com\"], \"a\": [\"111.124.203.38\"], \"spf\": \"\\\"v=spf1 include:spf.mail.163.com -all\\\"\", \"target\": \"126mx03.mxmail.netease.com\", \"smtp25_banner\": \"220 us-ntes-dx-126mx1.126.com ESMTP ready\", \"verdict\": \"PORT25_OPEN\"}]\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:19Z",
+   "finished_at": "2026-09-12T06:50:25Z",
+   "duration_seconds": 6.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "r08c-mail-dns-smtp",
+   "shard_id": 2,
+   "status": "success",
+   "result": {
+    "output": "$ pip install -q dnspython && python3 scripts/r08_smtp_probe.py qq.com foxmail.com aliyun.com\n[exit=0]\n[{\"domain\": \"qq.com\", \"mx\": [\"mx3.qq.com\", \"mx2.qq.com\", \"mx1.qq.com\"], \"a\": [\"113.108.81.189\", \"123.150.76.218\", \"203.205.254.157\"], \"spf\": \"\\\"v=spf1 include:spf.mail.qq.com -all\\\"\", \"target\": \"mx3.qq.com\", \"smtp25_banner\": \"220 newxmmxsza48-7.qq.com MX QQ Mail Server.\", \"verdict\": \"PORT25_OPEN\"}, {\"domain\": \"foxmail.com\", \"mx\": [\"mx3.qq.com\", \"mx2.qq.com\", \"mx1.qq.com\"], \"a\": [\"175.178.31.185\", \"42.194.252.6\"], \"spf\": \"\\\"v=spf1 include:spf.mail.qq.com ~all\\\"\", \"target\": \"mx3.qq.com\", \"smtp25_banner\": \"220 newxmmxszc26-0.qq.com MX QQ Mail Server.\", \"verdict\": \"PORT25_OPEN\"}, {\"domain\": \"aliyun.com\", \"mx\": [\"mx2.mail.aliyun.com\"], \"a\": [\"106.11.172.9\", \"106.11.248.146\", \"106.11.249.99\"], \"spf\": \"\\\"v=spf1 ip4:115.124.30.0/24  ip4:121.0.18.0/23 ip4:121.0.30.0/24  ip4:42.120.70.0/23 ip4:47.88.44.32/27 ip4:59.82.0.0/23\", \"target\": \"mx2.mail.aliyun.com\", \"smtp25_banner\": \"220 mx1.aliyun-inc.com MX AliMail Server\", \"verdict\": \"PORT25_OPEN\"}]\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:19Z",
+   "finished_at": "2026-09-12T06:50:25Z",
+   "duration_seconds": 6.4,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "r08c-mail-dns-smtp",
+   "shard_id": 3,
+   "status": "success",
+   "result": {
+    "output": "$ pip install -q dnspython && python3 scripts/r08_smtp_probe.py gmail.com hotmail.com fobshanghai.com\n[exit=0]\n[{\"domain\": \"gmail.com\", \"mx\": [\"gmail-smtp-in.l.google.com\", \"alt1.gmail-smtp-in.l.google.com\", \"alt2.gmail-smtp-in.l.google.com\"], \"a\": [\"142.250.177.229\"], \"spf\": \"\\\"v=spf1 redirect=_spf.google.com\\\"\", \"target\": \"gmail-smtp-in.l.google.com\", \"smtp25_banner\": \"220 mx.google.com ESMTP d75a77b69052e-530ca620c2csi54837881cf.88 - gsmtp\", \"verdict\": \"PORT25_OPEN\"}, {\"domain\": \"hotmail.com\", \"mx\": [\"hotmail-com.olc.protection.outlook.com\"], \"a\": [\"204.79.197.212\"], \"spf\": \"\\\"v=spf1 include:spf2.outlook.com -all\\\"\", \"target\": \"hotmail-com.olc.protection.outlook.com\", \"smtp25_banner\": \"220 BY1PEPF0002695B.mail.protection.outlook.com Microsoft ESMTP MAIL Service rea\", \"verdict\": \"PORT25_OPEN\"}, {\"domain\": \"fobshanghai.com\", \"mx\": [\"mxbiz1.qq.com\", \"mxbiz2.qq.com\"], \"a\": [\"61.152.96.242\"], \"spf\": \"\\\"v=spf1 include:spf.mail.qq.com include:qcloudmail.com ~all\\\"\", \"target\": \"mxbiz1.qq.com\", \"smtp25_banner\": \"220 bizmx59.qq.com MX QQ Mail Server\", \"verdict\": \"PORT25_OPEN\"}]\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:18Z",
+   "finished_at": "2026-09-12T06:50:22Z",
+   "duration_seconds": 3.2,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
