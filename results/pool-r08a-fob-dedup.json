@@ -1,0 +1,41 @@
+{
+ "task_id": "r08a-fob-dedup",
+ "verdict": "SUCCESS",
+ "shards_total": 2,
+ "shards_ok": 2,
+ "shards_failed": 0,
+ "shards_missing": [],
+ "aggregated_at": "2026-09-12T06:50:24Z",
+ "shards": [
+  {
+   "task_id": "r08a-fob-dedup",
+   "shard_id": 1,
+   "status": "success",
+   "result": {
+    "exit": 0,
+    "output": "{\"rows_raw\": 1570, \"rows_unique_thread\": 157, \"dup_removed\": 1413, \"dup_pattern_counts_per_thread\": {\"10\": 157}, \"board_field_raw\": {\"出口交流\": 157, \"外贸单证\": 157, \"外贸SOHO\": 157, \"外贸招聘求职\": 157, \"紧急采购\": 157, \"报关报检\": 157, \"外贸财务\": 157, \"采购俱乐部\": 157, \"电商营销\": 157, \"外贸小语种\": 157}, \"reqtype_unique\": {\"其他\": 110, \"外包\": 10, \"采购\": 9, \"求助\": 15, \"找服务商\": 11, \"找合伙人\": 1, \"咨询\": 1}, \"capability_unique\": {\"其他\": 94, \"物流\": 42, \"报关\": 13, \"财务\": 4, \"质检\": 2, \"运营\": 2, \"视频\": 1, \"文案\": 1, \"开发\": 1}}\n",
+    "stderr": "",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:12Z",
+   "finished_at": "2026-09-12T06:50:12Z",
+   "duration_seconds": 0.0,
+   "runner": "runnervmlun5p"
+  },
+  {
+   "task_id": "r08a-fob-dedup",
+   "shard_id": 2,
+   "status": "success",
+   "result": {
+    "output": "$ python3 -c 'import json,gzip;d=json.loads(gzip.decompress(open(\"tasks/payloads/fob_demands_2026.json.gz\",\"rb\").read()).decode(\"utf-8\"));ps=d[\"posts\"];seen=set();u=[p for p in ps if (p.get(\"thread_id\") not in seen and not seen.add(p.get(\"thread_id\")))];json.dump({\"posts\":u},open(\"result_clean.json\",\"w\"),ensure_ascii=False);print(\"rows_raw=%d unique=%d removed=%d\"%(len(ps),len(u),len(ps)-len(u)))'\n[exit=0]\nrows_raw=1570 unique=157 removed=1413\n\n",
+    "_partial_fail": false
+   },
+   "error": null,
+   "started_at": "2026-09-12T06:50:14Z",
+   "finished_at": "2026-09-12T06:50:14Z",
+   "duration_seconds": 0.0,
+   "runner": "runnervmlun5p"
+  }
+ ]
+}
