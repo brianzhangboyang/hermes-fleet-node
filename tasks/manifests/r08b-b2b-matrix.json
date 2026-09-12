@@ -1,0 +1,42 @@
+{
+ "task_id": "r08b-b2b-matrix",
+ "objective": "常态化批次B(任务书3.12): 5个外贸B2B公开站 首页/robots.txt/sitemap 可达性矩阵(复用E6侦察风格, 换dhgate/ec21新站), 供采集选型台账",
+ "created_by": "hermes-r08",
+ "shards": [
+  {
+   "shard_id": 1,
+   "kind": "shell",
+   "instructions": "u=www.alibaba.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml",
+   "expected_output": "www.alibaba.com home/robots/sitemap 状态+robots规则数",
+   "timeout_seconds": 150
+  },
+  {
+   "shard_id": 2,
+   "kind": "shell",
+   "instructions": "u=www.made-in-china.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml",
+   "expected_output": "www.made-in-china.com home/robots/sitemap 状态+robots规则数",
+   "timeout_seconds": 150
+  },
+  {
+   "shard_id": 3,
+   "kind": "shell",
+   "instructions": "u=www.tradeindia.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml",
+   "expected_output": "www.tradeindia.com home/robots/sitemap 状态+robots规则数",
+   "timeout_seconds": 150
+  },
+  {
+   "shard_id": 4,
+   "kind": "shell",
+   "instructions": "u=www.dhgate.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml",
+   "expected_output": "www.dhgate.com home/robots/sitemap 状态+robots规则数",
+   "timeout_seconds": 150
+  },
+  {
+   "shard_id": 5,
+   "kind": "shell",
+   "instructions": "u=www.ec21.com; echo \"== $u\"; curl -sL -m 20 -o /tmp/h.html -w 'home=%{http_code} t=%{time_total}s size=%{size_download} final=%{url_effective}\\n' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36' https://$u/; grep -o -m1 '<title>[^<]*' /tmp/h.html | head -c 150; echo; curl -s -m 15 -o /tmp/r.txt -w 'robots=%{http_code} size=%{size_download}\\n' -A 'Mozilla/5.0' https://$u/robots.txt; echo \"disallow_rules=$(grep -c Disallow /tmp/r.txt)\"; head -c 200 /tmp/r.txt; echo; curl -s -m 10 -o /dev/null -w 'sitemap=%{http_code}\\n' -A 'Mozilla/5.0' https://$u/sitemap.xml",
+   "expected_output": "www.ec21.com home/robots/sitemap 状态+robots规则数",
+   "timeout_seconds": 150
+  }
+ ]
+}
