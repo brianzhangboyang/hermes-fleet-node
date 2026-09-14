@@ -5,7 +5,7 @@
  "shards_ok": 2,
  "shards_failed": 0,
  "shards_missing": [],
- "aggregated_at": "2026-09-12T09:01:10Z",
+ "aggregated_at": "2026-09-14T07:30:33Z",
  "shards": [
   {
    "task_id": "weekly-fob-dedup",
@@ -18,8 +18,8 @@
     "_partial_fail": false
    },
    "error": null,
-   "started_at": "2026-09-12T09:00:58Z",
-   "finished_at": "2026-09-12T09:00:58Z",
+   "started_at": "2026-09-14T07:30:24Z",
+   "finished_at": "2026-09-14T07:30:24Z",
    "duration_seconds": 0.0,
    "runner": "runnervmlun5p"
   },
@@ -32,8 +32,8 @@
     "_partial_fail": false
    },
    "error": null,
-   "started_at": "2026-09-12T09:00:57Z",
-   "finished_at": "2026-09-12T09:00:57Z",
+   "started_at": "2026-09-14T07:30:23Z",
+   "finished_at": "2026-09-14T07:30:23Z",
    "duration_seconds": 0.0,
    "runner": "runnervmlun5p"
   }
